@@ -8,25 +8,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.Buffer;
 import java.util.ArrayList;
-class QuizCard{
-    private String question;
-    private String answer;
-    public QuizCard(String q, String a){
-        question=q;
-        answer=a;
-    }
-    public String getQuestion(){
-        return question;
-    }
-    public String getAnswer(){
-        return answer;
-    }
-}
 public class QuizCardBuilder {
-    JFrame frame;
-    JTextArea Question;
-    JTextArea Answer;
-    ArrayList<QuizCard>CardList;
+   private JFrame frame;
+   private JTextArea Question;
+  private  JTextArea Answer;
+   private ArrayList<QuizCard>CardList;
     public static void main(String[] args) {
         QuizCardBuilder builder=new QuizCardBuilder();
         builder.go();
@@ -111,13 +97,16 @@ public class QuizCardBuilder {
         Question.requestFocus();
     }
     private void SaveFile(File file){
+        int count=0;
         try{
             BufferedWriter writer=new BufferedWriter(new FileWriter(file));
             for(QuizCard card:CardList){
-                writer.write(card.getQuestion()+" / ");
+                writer.write(card.getQuestion() + "/");
                 writer.write(card.getAnswer() + "\n");
+                count++;
             }
             writer.close();
+            System.out.println(count);
         }
         catch(IOException ex){
             System.out.println("Couldn't write the cardList");
